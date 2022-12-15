@@ -41,7 +41,7 @@ public class MoveableItem : InteractableItem
     {
         _hits = Physics.RaycastAll(_playerInteractor.HandlePoint.position,
         _playerInteractor.HandlePoint.transform.forward,
-        _playerInteractor.MinDistance,
+        _playerInteractor.MaxDistance,
         _layerMask.value);
 
         Move();
@@ -68,7 +68,7 @@ public class MoveableItem : InteractableItem
         if (_hits.Length > 0)
             _targetPosition = _hits[0].point;
         else
-            _targetPosition = _playerInteractor.HandlePoint.position + _playerInteractor.HandlePoint.forward * _playerInteractor.MinDistance;
+            _targetPosition = _playerInteractor.HandlePoint.position + _playerInteractor.HandlePoint.forward * _playerInteractor.MaxDistance;
     }
 
     private void PickUp()
