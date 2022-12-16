@@ -16,6 +16,8 @@ public class TextPanel : MonoBehaviour
     private Coroutine _previousCoroutine = null;
     private int _paragraphsCount;
 
+    public bool IsVisible => _canvasGroup.alpha > 0;
+
     private void Awake()
     {
         _canvasGroup = GetComponent<CanvasGroup>();
