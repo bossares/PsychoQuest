@@ -15,7 +15,10 @@ public class ReadableItem : InteractableItem
 
     public override bool TryInteract()
     {
-        _textPanel.ShowParagraphs(_text);
+        if (_textPanel.IsVisible)
+            _textPanel.Hide();
+        else
+            _textPanel.ShowParagraphs(_text);
 
         return true;
     }
