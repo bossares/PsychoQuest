@@ -1,24 +1,22 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
 public class ReadableItem : InteractableItem
 {
-    [SerializeField][TextArea] private string[] _text;
+    [SerializeField][TextArea] private string[] _texts;
+    [SerializeField] private Trigger _trigger;
     
     private TextPanel _textPanel;
-    private LeaveTrigger _leaveTrigger;
 
     public override bool TryInteract()
     {
         if (_textPanel.IsVisible)
             _textPanel.Hide();
         else
-            _textPanel.ShowParagraphs(_text);
+            _textPanel.ShowParagraphs(_texts);
 
         return true;
     }
@@ -26,28 +24,22 @@ public class ReadableItem : InteractableItem
     private void Awake()
     {
         _textPanel = GameObject.FindObjectOfType<TextPanel>();
-        _leaveTrigger = GetComponentInChildren<LeaveTrigger>();
+        _trigger = GetComponentInChildren<Trigger>();
     }
 
     private void OnEnable()
     {
-        _leaveTrigger.Leaved += OnLeave;
+        _trigger.Involved += OnLeave;
     }
 
     private void OnDisable()
     {
-        _leaveTrigger.Leaved += OnLeave;
+        _trigger.Involved += OnLeave;
     }
 
     private void OnLeave(Collider other)
     {
         if (other.gameObject.TryGetComponent<PlayerInteractor>(out PlayerInteractor _playerInteractor))
             _textPanel.Hide();
-    }
-
-    private void OnValidate()
-    {
-        if (_text.Length == 0 || _text.Any(text => text.Length == 0))
-            throw new ArgumentException("Cannot be empty", "Text");
     }
 }
