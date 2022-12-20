@@ -24,15 +24,15 @@ public class TextPanel : MonoBehaviour
         _paragraphsPool = new ObjectPool<Paragraph>(_paragraphTemplate, _container, _maxParagraphsCapacity);
     }
 
-    public void ShowParagraphs(string[] texts)
+    public void ShowParagraphs(IReadOnlyList<string> texts)
     {
         if (_paragraphsCount > 0)
             ClearParagraphs();
 
         _previousCoroutine = StartCoroutine(ToggleVisability(true));
-        _paragraphsCount = texts.Length;
+        _paragraphsCount = texts.Count;
 
-        for (int i = 0; i < texts.Length; i++)
+        for (int i = 0; i < texts.Count; i++)
         {
             _paragraphsPool.TryGetObject(out Paragraph paragraph);
             paragraph.gameObject.SetActive(true);
