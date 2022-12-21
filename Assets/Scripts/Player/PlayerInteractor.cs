@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerInteractor : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
-    [SerializeField] private float _maxDistance = 2f;
+    [SerializeField] private float _maxDistance = 1.5f;
     
     private Transform _handlePoint;
 
@@ -25,11 +25,12 @@ public class PlayerInteractor : MonoBehaviour
     {
         Physics.Raycast(_camera.transform.position, _camera.transform.forward, out RaycastHit hitInfo, _maxDistance);
 
-        if (_isInteractAvailable)
+        if (_isInteractAvailable && hitInfo.collider != null)
         {
             hitInfo.collider.gameObject.TryGetComponent<InteractableItem>(out InteractableItem item);
 
-            _isInteractAvailable = !item.TryInteract();
+            if (item != null)
+                _isInteractAvailable = !item.TryInteract();
         }
     }
 
@@ -38,9 +39,13 @@ public class PlayerInteractor : MonoBehaviour
         Scrolled?.Invoke(value);
     }
 
-    private void Start()
+    private void Awake()
     {
         _handlePoint = _camera.transform;
+    }
+
+    private void Start()
+    {
         _currentCoroutine = StartCoroutine(IsInteractAvailableCoroutine());
     }
 

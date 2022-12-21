@@ -1,17 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(BoxCollider))]
 public class MoveableItem : InteractableItem
 {
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private int _resetItemYPos = -10;
 
+    private BoxCollider _boxCollider;
     private RaycastHit[] _hits;
     private Rigidbody _rigidbody;
     private PlayerInteractor _playerInteractor;
     private Vector3 _targetPosition;
     private Vector3 _previousPosition;
-    private Quaternion _previousRotation;
     private bool _isPickedUp;
 
     public override bool TryInteract()
@@ -27,6 +29,7 @@ public class MoveableItem : InteractableItem
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        _boxCollider = GetComponent<BoxCollider>();
         _playerInteractor = FindObjectOfType<PlayerInteractor>();
     }
 
@@ -51,8 +54,6 @@ public class MoveableItem : InteractableItem
     {
         if (_isPickedUp)
         {
-            _rigidbody.rotation = _previousRotation;
-
             if (_hits.Length > 0)
                 _rigidbody.MovePosition(_hits[0].point);
             else
@@ -73,8 +74,8 @@ public class MoveableItem : InteractableItem
 
     private void PickUp()
     {
+        _boxCollider.isTrigger = true;
         _previousPosition = transform.position;
-        _previousRotation = transform.rotation;
         _isPickedUp = true;
         _rigidbody.useGravity = false;
         _rigidbody.isKinematic = true;
@@ -83,6 +84,7 @@ public class MoveableItem : InteractableItem
     private void PickDown()
     {
         _isPickedUp = false;
+        _boxCollider.isTrigger = false;
         _rigidbody.useGravity = true;
         _rigidbody.isKinematic = false;
     }
