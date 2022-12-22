@@ -31,7 +31,7 @@ public class SwitchableItem : InteractableItem
         IsBlockedToggled?.Invoke(_isBlocked);
     }
 
-    protected virtual void ToggleIsActive()
+    public virtual void ToggleIsActive()
     {
         _isActive = !_isActive;
         IsActiveToggled?.Invoke(_isActive);
