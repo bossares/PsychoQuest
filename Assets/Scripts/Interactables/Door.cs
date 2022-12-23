@@ -35,7 +35,8 @@ public class Door : SwitchableItem
 
     private IEnumerator ToggleCoroutine()
     {
-        WaitForSeconds delay = new WaitForSeconds(0.1f);
+        float stepInSeconds = 0.1f;
+        WaitForSeconds delay = new WaitForSeconds(stepInSeconds);
 
         _rigidbody.isKinematic = false;
         ToggleTargetDegrees();

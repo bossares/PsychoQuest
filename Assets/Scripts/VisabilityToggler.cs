@@ -4,7 +4,7 @@ using Color = UnityEngine.Color;
 [RequireComponent(typeof(MeshCollider))]
 public class VisabilityToggler : MonoBehaviour
 {
-    [SerializeField] private Trigger _trigger;
+    [SerializeField] private TriggerBase _trigger;
     [SerializeField] private bool _isActiveColliderStart = false;
     [SerializeField] private bool _isActiveColliderEnd = true;
     [SerializeField] private float _startAlpha = 0f;

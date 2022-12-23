@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LeaveTrigger : Trigger
+public class TriggerLeave : TriggerBase
 {
     private void OnTriggerExit(Collider other)
     {
