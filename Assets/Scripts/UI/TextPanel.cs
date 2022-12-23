@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class TextPanel : MonoBehaviour
 {
-    [SerializeField] GameObject _container;
-    [SerializeField] Paragraph _paragraphTemplate;
+    [SerializeField] private GameObject _container;
+    [SerializeField] private Paragraph _paragraphTemplate;
     [SerializeField] private int _maxParagraphsCapacity = 20;
 
     private ObjectPool<Paragraph> _paragraphsPool;
@@ -36,7 +34,7 @@ public class TextPanel : MonoBehaviour
         {
             _paragraphsPool.TryGetObject(out Paragraph paragraph);
             paragraph.gameObject.SetActive(true);
-            paragraph.GetComponent<Paragraph>().Initialize(texts[i]);
+            paragraph.Initialize(texts[i]);
         }
     }
 
@@ -70,7 +68,7 @@ public class TextPanel : MonoBehaviour
 
     private void ClearParagraphs()
     {
-        _paragraphsPool.DeactivateAll();
+        _paragraphsPool.DeactivateAllItems();
         _paragraphsCount = 0;
     }
 }

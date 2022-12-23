@@ -8,8 +8,7 @@ public class ReadableItem : InteractableItem
 {
     [SerializeField][TextArea] private string[] _texts;
     [SerializeField] private TriggerBase _trigger;
-    
-    private TextPanel _textPanel;
+    [SerializeField] private TextPanel _textPanel;
 
     public override bool TryInteract()
     {
@@ -23,7 +22,6 @@ public class ReadableItem : InteractableItem
 
     private void Awake()
     {
-        _textPanel = GameObject.FindObjectOfType<TextPanel>();
         _trigger = GetComponentInChildren<TriggerBase>();
     }
 

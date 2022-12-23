@@ -7,11 +7,11 @@ public class MoveableItem : InteractableItem
 {
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private int _resetItemYPos = -10;
+    [SerializeField] private PlayerInteractor _playerInteractor;
 
     private BoxCollider _boxCollider;
     private RaycastHit[] _hits;
     private Rigidbody _rigidbody;
-    private PlayerInteractor _playerInteractor;
     private Vector3 _targetPosition;
     private Vector3 _previousPosition;
     private bool _isPickedUp;
@@ -30,7 +30,6 @@ public class MoveableItem : InteractableItem
     {
         _rigidbody = GetComponent<Rigidbody>();
         _boxCollider = GetComponent<BoxCollider>();
-        _playerInteractor = FindObjectOfType<PlayerInteractor>();
     }
 
     private void Start()

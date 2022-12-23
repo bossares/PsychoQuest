@@ -25,7 +25,7 @@ public class ObjectPool<T> where T : MonoBehaviour
         return result != null;
     }
 
-    public void DeactivateAll()
+    public void DeactivateAllItems()
     {
         foreach (var item in _pool)
             item.gameObject.SetActive(false);
