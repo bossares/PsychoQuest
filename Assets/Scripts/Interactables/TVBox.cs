@@ -1,12 +1,10 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
 [RequireComponent(typeof(AudioSource))]
 public class TVBox : SwitchableItem
 {
     [SerializeField] private GameObject _image;
-    [SerializeField] private UnityEvent _onIsActiveToggled;
 
     private AudioSource _audioSource;
 
@@ -20,8 +18,6 @@ public class TVBox : SwitchableItem
             _audioSource.Play();
         else
             _audioSource.Stop();
-
-        _onIsActiveToggled?.Invoke();
     }
 
     private void Awake()
