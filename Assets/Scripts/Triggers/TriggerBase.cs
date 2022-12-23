@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(BoxCollider))]
-public abstract class Trigger : MonoBehaviour
+public abstract class TriggerBase : MonoBehaviour
 {
     public event UnityAction<Collider> Involved;
 

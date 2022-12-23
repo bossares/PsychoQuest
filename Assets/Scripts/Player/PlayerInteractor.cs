@@ -9,17 +9,16 @@ public class PlayerInteractor : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private float _maxDistance = 1.5f;
-    
-    private Transform _handlePoint;
 
+    private Transform _handlePoint;
     private bool _isInteractAvailable = false;
     private Coroutine _currentCoroutine;
 
-    public event UnityAction <InputValue> Scrolled;
-    public event UnityAction<bool> IsInteractAvailableToggled;
-
     public Transform HandlePoint => _handlePoint.transform;
     public float MaxDistance => _maxDistance;
+
+    public event UnityAction <InputValue> Scrolled;
+    public event UnityAction <bool> IsInteractAvailableToggled;
 
     public void OnInteract(InputValue value)
     {
@@ -62,7 +61,8 @@ public class PlayerInteractor : MonoBehaviour
 
     private IEnumerator IsInteractAvailableCoroutine()
     {
-        WaitForSeconds delay = new WaitForSeconds(0.05f);
+        float stepInSeconds = 0.05f;
+        WaitForSeconds delay = new WaitForSeconds(stepInSeconds);
 
         while (true)
         {

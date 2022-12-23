@@ -7,7 +7,7 @@ using UnityEngine;
 public class ReadableItem : InteractableItem
 {
     [SerializeField][TextArea] private string[] _texts;
-    [SerializeField] private Trigger _trigger;
+    [SerializeField] private TriggerBase _trigger;
     
     private TextPanel _textPanel;
 
@@ -24,7 +24,7 @@ public class ReadableItem : InteractableItem
     private void Awake()
     {
         _textPanel = GameObject.FindObjectOfType<TextPanel>();
-        _trigger = GetComponentInChildren<Trigger>();
+        _trigger = GetComponentInChildren<TriggerBase>();
     }
 
     private void OnEnable()

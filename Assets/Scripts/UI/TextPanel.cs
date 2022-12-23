@@ -50,7 +50,8 @@ public class TextPanel : MonoBehaviour
 
     private IEnumerator ToggleVisability(bool isShowing)
     {
-        WaitForSeconds _delay = new WaitForSeconds(0.01f);
+        float stepInSeconds = 0.01f;
+        WaitForSeconds _delay = new WaitForSeconds(stepInSeconds);
         float direction = isShowing ? 1 : -1;
         float minValue = 0;
         float maxValue = 1;

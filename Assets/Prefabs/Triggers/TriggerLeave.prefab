@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6837653978687441089}
   - component: {fileID: 6417092556154484909}
   m_Layer: 2
-  m_Name: LeaveTrigger
+  m_Name: TriggerLeave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
