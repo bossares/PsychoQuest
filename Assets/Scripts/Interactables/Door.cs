@@ -3,6 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(HingeJoint))]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(AudioSource))]
 public class Door : SwitchableItem
 {
     [SerializeField] private AudioClip _lockedSound;

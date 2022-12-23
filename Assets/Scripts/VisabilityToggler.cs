@@ -2,6 +2,7 @@ using UnityEngine;
 using Color = UnityEngine.Color;
 
 [RequireComponent(typeof(MeshCollider))]
+[RequireComponent(typeof(MeshRenderer))]
 public class VisabilityToggler : MonoBehaviour
 {
     [SerializeField] private TriggerBase _trigger;

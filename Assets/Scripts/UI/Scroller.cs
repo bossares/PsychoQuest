@@ -1,24 +1,19 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class Scroller : MonoBehaviour
 {
-    [SerializeField] private GameObject _player;
+    [SerializeField] private PlayerInteractor _playerInteractor;
     [SerializeField] private float _speed = 0.5f;
 
-    private PlayerInteractor _playerInteractor;
     private Scrollbar _scrollbar;
     private float _minValue = 0;
     private float _maxValue = 1;
 
     private void Awake()
     {
-        _playerInteractor = _player.GetComponent<PlayerInteractor>();
         _scrollbar = gameObject.GetComponentInChildren<Scrollbar>();
     }
 
